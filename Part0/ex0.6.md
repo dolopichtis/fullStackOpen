@@ -29,7 +29,7 @@ Note right of browser: The browser starts executing the JS code that fetches the
 Note right of browser: The browser executess the callback function that renders the Notes right in place (div) where ID tag "notes" is.
 
     user->>browser: type some newText in form (<input type="text">) and then press the "Save" button (<input type="submit">)
-    browser->>server: preventDefault (making POST by the FORM) instead it's do: 1) make JSON data (variable newNote) as { "content": "userText"(content of <input>), "date": currentDate } 2) then push that data to array of notes 3) redraw <div id="notes"> with that array 4) make POST call by JS logic: sent JSON data to https://studies.cs.helsinki.fi/exampleapp/new_note_spa 5) empty variable newNote to prevent doubling
+    browser->>server: preventDefault (making POST by the FORM) instead it's do: 1) make JSON data (variable newNote) as { "content": "userText"(content of <input>), "date": currentDate } 2) then push that data to array of notes 3) redraw <div id="notes"> with that array 4) make POST call by JS logic: sent JSON data to https://studies.cs.helsinki.fi/exampleapp/new_note_spa 5) empty content of FORM to prevent doubling
 	activate server
 	
 Note left of server: The server put JSON pair to NotesList, sending responce with Status 201 (Created). (What if it is some trouble with server? UserNote will be added to page, but not to server... without informing the user about that)
