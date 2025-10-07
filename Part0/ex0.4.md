@@ -30,12 +30,13 @@ Note right of browser: The browser executess the callback function that renders 
 
     user->>browser: type some newText in form (<input type="text">) and then press the "Save" button (<input type="submit">)
     browser->>server: make POST call to https://studies.cs.helsinki.fi/exampleapp/new_note with POST content as pairs: "note" (id of <input type="text"> tag): "text typed by user in input field"
-activate server
-Note right of server: The server put JSON pair of RecievedText with current_date to NotesList and redirect browser to https://studies.cs.helsinki.fi/exampleapp/notes by sending responce with Status 302 (Found). A browser receiving this status will automatically request the resource at the URL in the Location header (notes page, in our case), redirecting the user to the new page. And cycle reapeted:
+	activate server
+	
+Note left of server: The server put JSON pair of RecievedText with current_date to NotesList and redirect browser to https://studies.cs.helsinki.fi/exampleapp/notes by sending responce with Status 302 (Found). A browser receiving this status will automatically request the resource at the URL in the Location header (notes page, in our case), redirecting the user to the new page. And cycle reapeted:
 
-server-->>browser: response: Status 302 with "https://studies.cs.helsinki.fi/exampleapp/notes" in Location Header
-deactivate server
-  browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/notes
+	server-->>browser: response: Status 302 with "https://studies.cs.helsinki.fi/exampleapp/notes" in Location Header
+	deactivate server
+	browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/notes
     activate server
     server-->>browser: HTML document whitch contain the FORM
     deactivate server
