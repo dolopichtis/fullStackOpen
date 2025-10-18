@@ -9,6 +9,8 @@ function App() {
 		total: 0,
 	})
 
+	const tableKeys = ['good', 'neutral', 'bad', 'total', 'average', 'positive'];
+
 	const handleClick = (nameClick) => () => {
 
 		// if setState not be a asinchronius, it will be posible to add average and positive keys to this object
@@ -32,38 +34,45 @@ function App() {
 	const StatisticLine = ({name}) => {
 		if (name == "average") {
 			return (
-				<p> average is: {(rating.good - rating.bad) /rating.total} </p>
+				<>
+				<td> average is:</td>
+				<td> {(rating.good - rating.bad) /rating.total} </td>
+				</>
 			)
 		}
 		if (name == "positive") {
 			return (
-				<p> positive is: {(rating.good / rating.total) * 100} </p>
+				<>
+				<td> positive is:</td>
+				<td>{(rating.good / rating.total) * 100} </td>
+				</>
 			)
 		}
 		return (
-		<p> {name} is: {rating[name]}</p>
+			<>
+		<td> {name} is: </td>
+		<td>{rating[name]}</td>
+		</>
 		)
 	}
 	
 
 	const StatisticDisplay = () => {
-
 		if (rating.total == 0) {
 		return (
 		       <h2> No feedback given. Be the first :) </h2>
 		)
 		}
 		return (
-	      <div className="feedback">
-		       <h1> Statistic </h1>
-			<StatisticLine name='good'/>
-			<StatisticLine name='neutral'/>
-			<StatisticLine name='bad'/>
-			<h2> extra statistic: </h2>
-			<StatisticLine name='total'/>
-			<StatisticLine name='average'/>
-			<StatisticLine name='positive'/>
-     		 </div>
+			<table>
+				<tbody>
+				{tableKeys.map(item => (
+				<tr key={item}>
+				<StatisticLine name={item} />
+				</tr>
+				))}
+				</tbody>
+     		 	</table>
 		)
 	}
 
