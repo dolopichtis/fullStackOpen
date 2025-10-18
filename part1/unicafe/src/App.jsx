@@ -11,6 +11,18 @@ function App() {
 		)
 	}
 
+	const Stat = ({name}) => {
+		return (
+		<p> {name} is: {rating[name]}</p>
+		)
+	}
+	
+	const total = rating.good + rating.neutral + rating.bad;
+	
+	const everage = (rating.good - rating.bad) / total;
+	
+	const positive = (rating.good / total) * 100;
+
   return (
     <>
       <h1> give feedback: </h1>
@@ -20,10 +32,14 @@ function App() {
 	<Button name="bad"/>
       </div>
       <div className="feedback">
-      <h1> Statistic </h1>
-      <p> good is: {rating.good} </p>
-      <p> neutral is: {rating.neutral} </p>
-      <p> bad is: {rating.bad} </p>
+       <h1> Statistic </h1>
+	<Stat name='good'/>
+	<Stat name='neutral'/>
+	<Stat name='bad'/>
+	<h2> extra statistic: </h2>
+				<p> total votes is: {total} </p>
+				<p> average is: {everage} </p>
+				<p> positive is: {positive} % </p>
       </div>
     </>
   )
