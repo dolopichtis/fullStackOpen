@@ -1,9 +1,27 @@
 import { useState } from 'react'
 
 function App() {
-  const [rating, setRating] = useState({good: 0, neutral: 0, bad: 0});
+  const [rating, setRating] = 
+	useState({
+		good: 0,
+		neutral: 0,
+		bad: 0,
+		total: 0,
+	})
+
 	const handleClick = (nameClick) => () => {
-		setRating({[nameClick]: rating[nameClick] += 1, ...rating});
+
+		// if setState not be a asinchronius, it will be posible to add average and positive keys to this object
+		setRating(
+			prevRating => (
+				{
+					...prevRating,
+					[nameClick]: prevRating[nameClick] + 1,
+					total: prevRating.total + 1,
+				}
+			)
+		);
+
 	}
 	const Button = ({name}) => {
 		return (
@@ -11,20 +29,26 @@ function App() {
 		)
 	}
 
-	const Stat = ({name}) => {
+	const StatisticLine = ({name}) => {
+		if (name == "average") {
+			return (
+				<p> average is: {(rating.good - rating.bad) /rating.total} </p>
+			)
+		}
+		if (name == "positive") {
+			return (
+				<p> positive is: {(rating.good / rating.total) * 100} </p>
+			)
+		}
 		return (
 		<p> {name} is: {rating[name]}</p>
 		)
 	}
 	
-	const total = rating.good + rating.neutral + rating.bad;
-	
-	const everage = (rating.good - rating.bad) / total;
-	
-	const positive = (rating.good / total) * 100;
 
-	const StatisticDisplay = ({total}) => {
-		if (total == 0) {
+	const StatisticDisplay = () => {
+
+		if (rating.total == 0) {
 		return (
 		       <h2> No feedback given. Be the first :) </h2>
 		)
@@ -32,13 +56,13 @@ function App() {
 		return (
 	      <div className="feedback">
 		       <h1> Statistic </h1>
-			<Stat name='good'/>
-			<Stat name='neutral'/>
-			<Stat name='bad'/>
+			<StatisticLine name='good'/>
+			<StatisticLine name='neutral'/>
+			<StatisticLine name='bad'/>
 			<h2> extra statistic: </h2>
-			<p> total votes is: {total} </p>
-			<p> average is: {everage} </p>
-			<p> positive is: {positive} % </p>
+			<StatisticLine name='total'/>
+			<StatisticLine name='average'/>
+			<StatisticLine name='positive'/>
      		 </div>
 		)
 	}
@@ -51,7 +75,7 @@ function App() {
 	<Button name="neutral"/>
 	<Button name="bad"/>
       </div>
-      <StatisticDisplay total={total}/>
+      <StatisticDisplay />
     </>
   )
 }
