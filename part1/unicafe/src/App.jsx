@@ -23,6 +23,26 @@ function App() {
 	
 	const positive = (rating.good / total) * 100;
 
+	const StatisticDisplay = ({total}) => {
+		if (total == 0) {
+		return (
+		       <h2> No feedback given. Be the first :) </h2>
+		)
+		}
+		return (
+	      <div className="feedback">
+		       <h1> Statistic </h1>
+			<Stat name='good'/>
+			<Stat name='neutral'/>
+			<Stat name='bad'/>
+			<h2> extra statistic: </h2>
+			<p> total votes is: {total} </p>
+			<p> average is: {everage} </p>
+			<p> positive is: {positive} % </p>
+     		 </div>
+		)
+	}
+
   return (
     <>
       <h1> give feedback: </h1>
@@ -31,16 +51,7 @@ function App() {
 	<Button name="neutral"/>
 	<Button name="bad"/>
       </div>
-      <div className="feedback">
-       <h1> Statistic </h1>
-	<Stat name='good'/>
-	<Stat name='neutral'/>
-	<Stat name='bad'/>
-	<h2> extra statistic: </h2>
-				<p> total votes is: {total} </p>
-				<p> average is: {everage} </p>
-				<p> positive is: {positive} % </p>
-      </div>
+      <StatisticDisplay total={total}/>
     </>
   )
 }
