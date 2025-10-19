@@ -42,7 +42,7 @@ const Content = ({course}) => {
 	return(
 		<>
 			{course.parts.map((part, index) => 
-				<Part key={'part' + index} part={part.name} exercises={part.exercises} />) }
+				<Part key={'part' + part.id} part={part.name} exercises={part.exercises} />) }
 		</>
 	)
 }
