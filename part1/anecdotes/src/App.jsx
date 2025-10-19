@@ -21,6 +21,9 @@ function App() {
 			anecdotesCopy[index] = {...anecdotesCopy[index], rate: anecdotesCopy[index].rate + 1};
 			setAnecdotes(anecdotesCopy);
 		}
+		if (whatDo == 'next'){
+			setIndex(Math.floor(Math.random()*anecdotes.length));
+		}
 	}
 
 	return (
