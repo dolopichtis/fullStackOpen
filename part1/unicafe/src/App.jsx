@@ -31,27 +31,27 @@ function App() {
 		)
 	}
 
-	const StatisticLine = ({name}) => {
+	const StatisticLine = ({obj, name}) => {
 		if (name == "average") {
 			return (
 				<>
-				<td> average is:</td>
-				<td> {(rating.good - rating.bad) /rating.total} </td>
+				<td> {name} is:</td>
+				<td> {(obj.good - obj.bad) /obj.total} </td>
 				</>
 			)
 		}
 		if (name == "positive") {
 			return (
 				<>
-				<td> positive is:</td>
-				<td>{(rating.good / rating.total) * 100} </td>
+				<td> {name} is:</td>
+				<td>{(obj.good / obj.total) * 100} </td>
 				</>
 			)
 		}
 		return (
 			<>
 		<td> {name} is: </td>
-		<td>{rating[name]}</td>
+		<td>{obj[name]}</td>
 		</>
 		)
 	}
@@ -68,7 +68,7 @@ function App() {
 				<tbody>
 				{tableKeys.map(item => (
 				<tr key={item}>
-				<StatisticLine name={item} />
+				<StatisticLine obj={rating} name={item} />
 				</tr>
 				))}
 				</tbody>

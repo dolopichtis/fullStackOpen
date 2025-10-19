@@ -16,12 +16,12 @@ function App() {
 		{ text: 'The only way to go fast, is to go well.', rate: 0 }])
 	const [index, setIndex] = useState(0)
 	const handleClick = (whatDo) => () => {
-		if (whatDo== "rate") {
+		if (whatDo === "rate") {
 			const anecdotesCopy = [...anecdotes];
 			anecdotesCopy[index] = {...anecdotesCopy[index], rate: anecdotesCopy[index].rate + 1};
 			setAnecdotes(anecdotesCopy);
 		}
-		if (whatDo == 'next'){
+		if (whatDo === 'next'){
 			setIndex(Math.floor(Math.random()*anecdotes.length));
 		}
 	}
@@ -30,9 +30,9 @@ function App() {
 			(prev, current) => { return (current.rate > prev.rate) ? current : prev
 			}, anecdotes[0]
 		);
-		if (maxRated.rate ===0) {
+		if (maxRated.rate === 0) {
 			return (
-			<p> no one voted yet </p>
+				<p> no one voted yet </p>
 			)
 		}
 		return (
