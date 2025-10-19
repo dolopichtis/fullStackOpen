@@ -30,6 +30,11 @@ function App() {
 			(prev, current) => { return (current.rate > prev.rate) ? current : prev
 			}, anecdotes[0]
 		);
+		if (maxRated.rate ===0) {
+			return (
+			<p> no one voted yet </p>
+			)
+		}
 		return (
 			<>
 				<p> {maxRated.text}</p>
