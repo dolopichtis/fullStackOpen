@@ -33,7 +33,10 @@ function App() {
 			<button onClick={handleClick('rate')}>vote</button>
 			<button onClick={handleClick('next')}>next</button>
 			<h3> most rated:</h3>
-			<p> {anecdotes[index].text} </p>
+			<p> {anecdotes.reduce(
+				(prev, current) => { return (current.rate > prev.rate) ? current : prev
+				}, anecdotes[0]
+			).text} </p>
 		</>
 	)
 }
