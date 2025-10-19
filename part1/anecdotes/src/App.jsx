@@ -25,6 +25,18 @@ function App() {
 			setIndex(Math.floor(Math.random()*anecdotes.length));
 		}
 	}
+	const MostRated = () => {
+		const maxRated = anecdotes.reduce(
+			(prev, current) => { return (current.rate > prev.rate) ? current : prev
+			}, anecdotes[0]
+		);
+		return (
+			<>
+				<p> {maxRated.text}</p>
+				<p> it has {maxRated.rate} votes </p>
+			</>
+		)
+	}
 
 	return (
 		<>
@@ -33,10 +45,7 @@ function App() {
 			<button onClick={handleClick('rate')}>vote</button>
 			<button onClick={handleClick('next')}>next</button>
 			<h3> most rated:</h3>
-			<p> {anecdotes.reduce(
-				(prev, current) => { return (current.rate > prev.rate) ? current : prev
-				}, anecdotes[0]
-			).text} </p>
+			<MostRated />
 		</>
 	)
 }
