@@ -1,5 +1,8 @@
 import { useState } from 'react'
 import  Contact from './component/Contact'
+import  Find from './component/Find'
+import Form from './component/Form'
+import Display from './component/Display'
 
 const App = () => {
 	const [id, setId] = useState(4);
@@ -36,15 +39,9 @@ const App = () => {
 
 	return (
 		<>
-			<form onSubmit= { handleSubmit} >
-				<p> find: <input name='find' onChange = {handleFind} /> </p>
-				<p> name: <input name='newContact' onChange= {handleInputName} /> </p>
-				<p> phone: <input name='phone' onChange= {handleInputPhone} /> </p>
-				<button type='submit' >add</button>
-			</form>
-			{finded.map(
-				(contact) => <Contact key={contact.id} contact={contact} />)
-			} 
+			<Find handleFind={ handleFind } />
+			<Form handleSubmit = {handleSubmit} handleInputName = {handleInputName} handleInputPhone = {handleInputPhone} />
+			<Display contacts={finded} />
 		</>
 	)
 
