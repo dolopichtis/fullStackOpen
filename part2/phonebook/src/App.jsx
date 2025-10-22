@@ -18,7 +18,7 @@ const App = () => {
 		submit.preventDefault();
 		console.log(contacts.findIndex( contact => contact === newContact.name))
 
-		if (contacts.findIndex( contact => contact.name === newContact.name) !== -1 ) {
+		if (!contacts.includes(newContact.name)) {
 			alert(`contact ${newContact.name} already added to phonebook`) 
 		} else {
 			const newId = id + 1;
