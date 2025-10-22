@@ -7,18 +7,16 @@ const App = () => {
 		[{ id: id, name: 'Arto Hellas', number: 12345 }]
 	)
 	const [newContact, setNewContact] = useState(''); 
-	const handleInput = (input) => {
-		const contactObj = {
-			name: input.target.value,
-			number:123 
-		}
-		setNewContact(contactObj);
+	const handleInputName = (input) => {
+		setNewContact({...newContact, name: input.target.value});
+	}
+	const handleInputPhone = (input) => {
+		setNewContact({...newContact, number: input.target.value});
 	}
 	const handleSubmit = (submit) => {
 		submit.preventDefault();
-		console.log(contacts.findIndex( contact => contact === newContact.name))
 
-		if (!contacts.includes(newContact.name)) {
+		if (contacts.findIndex(contact => contact.name === newContact.name) !== -1) {
 			alert(`contact ${newContact.name} already added to phonebook`) 
 		} else {
 			const newId = id + 1;
@@ -31,7 +29,8 @@ const App = () => {
 		<>
 			<form onSubmit= { handleSubmit} >
 				<p> debug: {newContact.name}</p>
-				<p> name: <input name='newContact' onChange= {handleInput} /> </p>
+				<p> name: <input name='newContact' onChange= {handleInputName} /> </p>
+				<p> phone: <input name='phone' onChange= {handleInputPhone} /> </p>
 				<button type='submit' >add</button>
 			</form>
 			{contacts.map(

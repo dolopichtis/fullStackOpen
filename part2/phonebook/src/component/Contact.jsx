@@ -3,9 +3,9 @@ const Contact = ({contact}) => {
 	const Name = ({contact}) => {
 		return(
 			<>
-				<ul>
-					<li>{contact.name}</li>
-				</ul>
+				<div>
+					<p><strong>{contact.name}</strong>, phone: {contact.number}</p>
+				</div>
 			</>
 		)
 	}
