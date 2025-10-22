@@ -16,9 +16,15 @@ const App = () => {
 	}
 	const handleSubmit = (submit) => {
 		submit.preventDefault();
-		const newId = id + 1;
-		setId(newId);
-		setContacts([...contacts, {...newContact, id: newId}]);
+		console.log(contacts.findIndex( contact => contact === newContact.name))
+
+		if (contacts.findIndex( contact => contact.name === newContact.name) !== -1 ) {
+			alert(`contact ${newContact.name} already added to phonebook`) 
+		} else {
+			const newId = id + 1;
+			setId(newId);
+			setContacts([...contacts, {...newContact, id: newId}]);
+		}
 	}
 
 	return (
