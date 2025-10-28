@@ -1,20 +1,16 @@
-import { useState } from 'react'
+import { useState , useEffect } from 'react'
 import  Contact from './component/Contact'
 import  Find from './component/Find'
 import Form from './component/Form'
 import Display from './component/Display'
+import axios from 'axios'
 
 const App = () => {
 	const [id, setId] = useState(4);
-	const [contacts, setContacts] = useState(
-		[
-			{ name: 'Arto Hellas', number: '040-123456', id: 1 },
-			{ name: 'Ada Lovelace', number: '39-44-5323523', id: 2 },
-			{ name: 'Mary Poppendieck', number: '39-23-6423122', id: 4 }
-		]
-	)
+	const [contacts, setContacts] = useState([]);
 	const [finded, setFinded] = useState(contacts);
 	const [newContact, setNewContact] = useState(); 
+
 	const handleInputName = (input) => {
 		setNewContact({...newContact, name: input.target.value});
 	}
@@ -36,6 +32,14 @@ const App = () => {
 	const handleFind = (input) => {
 		setFinded(contacts.filter(contact => contact.name.toLowerCase().startsWith(input.target.value)));
 	}
+	useEffect( () => {
+		axios.get('http://localhost:3001/persons')
+			.then( response => {
+				setContacts(response.data);
+				setFinded(response.data);
+			}
+			)
+	}, [] );
 
 	return (
 		<>
