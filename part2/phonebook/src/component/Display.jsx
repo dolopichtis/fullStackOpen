@@ -1,12 +1,25 @@
 import Contact from './Contact'
 
-const Display = ({contacts}) => {
+const Display = ({contacts, handleDeletion}) => {
 	return (
-		<>
+		<table>
+			<tbody>
+			<tr>
+			<th>
+			name	
+			</th>
+			<th>
+		phone number	
+			</th>
+			<th>
+		delete contact	
+			</th>
+			</tr>
 			{contacts.map(
-				(contact) => <Contact key={contact.id} contact={contact} />)
+				(contact) => <Contact key={contact.id} contact={contact} handleDeletion={handleDeletion} />)
 			} 
-			</>
+			</tbody>
+			</table>
 	)
 }
 
