@@ -2,7 +2,9 @@ import contactService from './../services/contacts.js'
 const Contact = ({contact, handleDeletion}) => {
 
 	const handleClick = (id) => () => {
+		if (confirm(`do you want to delete ${contact.name}`)){
 		handleDeletion(id);
+		}
 	}
 
 	const Name = ({contact}) => {
