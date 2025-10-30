@@ -5,6 +5,11 @@ const getPersons = () => {
 	return axios.get(url).then(response => response.data).catch(error => console.log(error))
 }
 
+const updPerson = (id, changedPerson) => {
+	console.log(id);
+	return axios.put(url + `/${id}`, changedPerson).then(response => response.data).catch(error => console.log(error))
+}
+
 const deletePerson = (id) => {
 	return axios.delete(url + `/${id}`).then(response => response.data).catch(error => console.log(error))
 }
@@ -16,5 +21,6 @@ const createPerson = (newContact) => {
 export default {
 	getPersons,
 	deletePerson,
+	updPerson,
 	createPerson
 }
