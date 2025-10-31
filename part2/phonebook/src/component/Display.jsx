@@ -1,6 +1,7 @@
 import Contact from './Contact'
 
 const Display = ({contacts, handleDeletion}) => {
+	if (typeof contacts.isArray ) {
 	return (
 		<table>
 			<tbody>
@@ -15,12 +16,14 @@ const Display = ({contacts, handleDeletion}) => {
 		delete contact	
 			</th>
 			</tr>
-			{contacts.map(
+			{
+					contacts.map(
 				(contact) => <Contact key={contact.id} contact={contact} handleDeletion={handleDeletion} />)
 			} 
 			</tbody>
 			</table>
 	)
+	}
 }
 
 export default Display
