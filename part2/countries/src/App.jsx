@@ -16,16 +16,21 @@ function App() {
 	);
 	
 	const handleValueChange = (input) => {
-		setValue(input.target.value);
+		const value = input.target.value;
+		setValue(value);
 		// find country by value in db
-		setCountry(countries.filter(element => element.name.common.toLowerCase().includes(input.target.value.toLowerCase())));
+		if(value.length > 0) {
+			setCountry(countries.filter(element => element.name.common.toLowerCase().includes(value.toLowerCase())));
+		} else {
+			setCountry(null);
+		}
 	}
 
 	return (
-	<>
+		<>
 			<Input handleValueChange={handleValueChange}/>
 			<Display country={country}/>
-	</>
+		</>
 	)
 }
 

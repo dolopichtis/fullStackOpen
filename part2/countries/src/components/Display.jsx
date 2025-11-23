@@ -3,8 +3,6 @@ import CountryDetails from './CountryDetails'
 
 function Display({country}) {
 	if(country && country.length > 0){
-		console.log(country);
-		console.log('length' + country.length);
 		if(country.length === 1) {
 		return (
 			<>
