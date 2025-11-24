@@ -13,20 +13,23 @@ const Country = ({country}) => {
 	if (toShow) {
 		console.log(country)
 		return (
-			<div>
-				<tl>
+				<tr>
 					<td>
 						<CountryDetails country={country}/>
 					</td>
 					<td>
 						<button onClick={handleClick}>Show</button>
 					</td>
-				</tl>	
-			</div>
+				</tr>	
 		)
 	} else {
 		return (
-			<p>{country.name.common}<button onClick={handleClick}>Show</button></p>
+		<tr>
+			<td>{country.name.common}</td>
+			<td>
+			<button onClick={handleClick}>Show</button>
+			</td>
+			</tr>
 		)
 	}
 }
