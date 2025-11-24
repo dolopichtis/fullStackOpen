@@ -1,15 +1,15 @@
 import Country from './Country'
 
 const CountryDetails = ({country}) => {
-	const countryDetails = country[0];
+	console.log('hi', country);
 	return (
 	<>
-			<h2>{countryDetails.name.common}</h2>
-			<p>capital {countryDetails.capital}</p>
-			<p>Area {countryDetails.area} sq. km</p>
+			<h2>{country.name.common}</h2>
+			<p>capital {country.capital}</p>
+			<p>Area {country.area} sq. km</p>
 			<h3>Languages</h3>
-			<div>{Object.values(countryDetails.languages).map(lang => <li key={lang}> {lang} </li>)}</div>
-			<img src={countryDetails.flags.png} alt={countryDetails.name.common + " flag"}></img>
+			<div>{Object.values(country.languages).map(lang => <li key={lang}> {lang} </li>)}</div>
+			<img src={country.flags.png} alt={country.name.common + " flag"}></img>
 	</>
 	)
 }

@@ -6,16 +6,15 @@ function Display({country}) {
 		if(country.length === 1) {
 		return (
 			<>
-			<CountryDetails country={country}/>
+			<CountryDetails country={country[0]}/>
 			</>
 		)
 		} else if (country.length <= 10) {
-				console.log(country[0].name.common);
 			return (
 			<>
 					{country.map(
 					(c) =>
-					<Country key={c.name.common} country={c.name.common}/>
+					<Country key={c.name.common} country={c}/>
 					)}
 			</>
 			)
