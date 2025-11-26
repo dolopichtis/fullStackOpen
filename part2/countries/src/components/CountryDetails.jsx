@@ -1,7 +1,7 @@
 import Country from './Country'
+import Metheo from './Metheo'
 
 const CountryDetails = ({country}) => {
-	console.log('hi', country);
 	return (
 	<>
 			<h2>{country.name.common}</h2>
@@ -10,6 +10,7 @@ const CountryDetails = ({country}) => {
 			<h3>Languages</h3>
 			<div>{Object.values(country.languages).map(lang => <li key={lang}> {lang} </li>)}</div>
 			<img src={country.flags.png} alt={country.name.common + " flag"}></img>
+			<Metheo city={country.capital}/>
 	</>
 	)
 }
