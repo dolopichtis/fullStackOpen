@@ -35,5 +35,15 @@ simplePhonebook.get('/api/persons', (request, response) => {
 	response.json(phonebook);
 });
 
+simplePhonebook.get('/api/persons/:id', (req, res) => {
+	const personID = req.params.id;
+	const personInfo = phonebook.find(info => info.id === personID);
+	if (personInfo) {
+		res.json(personInfo);
+	} else {
+		res.status(404).end;
+	} 
+});
+
 const PORT = 3001;
 simplePhonebook.listen(PORT, () => console.log(`Server running on the ${PORT}`));
