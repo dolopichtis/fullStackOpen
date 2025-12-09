@@ -41,7 +41,7 @@ simplePhonebook.get('/api/persons/:id', (req, res) => {
 	if (personInfo) {
 		res.json(personInfo);
 	} else {
-		res.status(404).end;
+		res.status(404).end();
 	} 
 });
 
