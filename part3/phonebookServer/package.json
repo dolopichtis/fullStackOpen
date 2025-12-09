@@ -1,0 +1,25 @@
+{
+	"name": "phonebookserver",
+	"version": "1.0.0",
+	"description": "ex 3.1 of FullStackOpen. Simple phonebook server",
+	"main": "simpleServer.js",
+	"scripts": {
+		"start": "node simpleServer.js",
+		"dev": "node --watch simpleServer.js",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "dolopichtis.github.com"
+	},
+	"keywords": [
+		"simple",
+		"web",
+		"server"
+	],
+	"author": "DiKo",
+	"license": "MIT",
+	"dependencies": {
+		"express": "^5.2.1"
+	}
+}
