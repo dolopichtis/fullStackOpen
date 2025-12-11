@@ -1,6 +1,6 @@
 const express = require('express');
 
-const phonebook = [
+let phonebook = [
 	{ 
 		"id": "1",
 		"name": "Arto Hellas", 
@@ -43,6 +43,13 @@ simplePhonebook.get('/api/persons/:id', (req, res) => {
 	} else {
 		res.status(404).end();
 	} 
+});
+
+simplePhonebook.delete('/api/persons/:id', (req, res) => {
+	const personID = req.params.id;
+	phonebook = phonebook.filter(info => info.id !== personID);
+	console.log(phonebook);
+	res.status(204).end();
 });
 
 const PORT = 3001;
