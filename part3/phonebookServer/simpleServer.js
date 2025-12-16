@@ -25,6 +25,8 @@ let phonebook = [
 
 const simplePhonebook = express();
 
+simplePhonebook.use(express.json());
+
 simplePhonebook.get('/info', (req, res) => {
 	const reqTime = new Date();
 	res.send(`<p>Phonebook has data for ${phonebook.length} people</p>
@@ -51,6 +53,19 @@ simplePhonebook.delete('/api/persons/:id', (req, res) => {
 	console.log(phonebook);
 	res.status(204).end();
 });
+
+simplePhonebook.post('/api/persons', (req, res) => {
+// methods:
+	const getID = (max = 10000) => {
+		return Math.ceil(Math.random() * max);
+	}
+// main:
+	const newPerson = req.body;
+	phonebook = [...phonebook, {...newPerson, id: getID() + ""}]
+	console.log(phonebook);
+	res.status(200).end();
+});
+
 
 const PORT = 3001;
 simplePhonebook.listen(PORT, () => console.log(`Server running on the ${PORT}`));
