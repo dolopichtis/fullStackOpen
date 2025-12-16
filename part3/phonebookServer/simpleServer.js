@@ -1,4 +1,5 @@
 const express = require('express');
+const server = require('./server')
 
 let phonebook = [
 	{ 
@@ -54,18 +55,8 @@ simplePhonebook.delete('/api/persons/:id', (req, res) => {
 	res.status(204).end();
 });
 
-simplePhonebook.post('/api/persons', (req, res) => {
-// methods:
-	const getID = (max = 10000) => {
-		return Math.ceil(Math.random() * max);
-	}
-// main:
-	const newPerson = req.body;
-	phonebook = [...phonebook, {...newPerson, id: getID() + ""}]
-	console.log(phonebook);
-	res.status(200).end();
-});
-
+// try to decomposition of server methods
+simplePhonebook.post('/api/persons', (req, res) => server.post(req, res, phonebook));
 
 const PORT = 3001;
 simplePhonebook.listen(PORT, () => console.log(`Server running on the ${PORT}`));
