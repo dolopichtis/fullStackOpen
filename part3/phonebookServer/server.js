@@ -1,15 +1,26 @@
 const post = (req, res, db) => {
-	console.log(db);
-	console.log(req.body);
 // methods:
 	const getID = (max = 10000) => {
 		return Math.ceil(Math.random() * max);
 	}
 // main:
 	const newEntry = req.body;
-	db = [...db, {...newEntry, id: getID() + ""}]
-	console.log(db);
-	res.status(200).end();
+	let resBody;
+	let resStatus;
+	if (newEntry.name && newEntry.number) {
+		resStatus = 400;
+		if (!db.find((item) => item.name === newEntry.name)){
+			db = [...db, { id: getID() + "", ...newEntry }]
+			console.log(db);
+			resBody = newEntry;
+			resStatus = 200;
+		} else {
+			resBody = { error: 'name must be unique' }
+		}
+	} else {
+		resBody = { error: 'name and number must be filled-in' }
+	}
+	res.status(resStatus).json(resBody).end();
 }
 
 module.exports = {post};
