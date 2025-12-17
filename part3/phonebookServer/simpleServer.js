@@ -1,5 +1,6 @@
 const express = require('express');
 const server = require('./server')
+const morgan = require('morgan');
 
 let phonebook = [
 	{ 
@@ -27,6 +28,7 @@ let phonebook = [
 const simplePhonebook = express();
 
 simplePhonebook.use(express.json());
+simplePhonebook.use(morgan('tiny'));
 
 simplePhonebook.get('/info', (req, res) => {
 	const reqTime = new Date();

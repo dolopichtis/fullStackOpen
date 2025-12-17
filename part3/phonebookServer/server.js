@@ -6,9 +6,8 @@ const post = (req, res, db) => {
 // main:
 	const newEntry = req.body;
 	let resBody;
-	let resStatus;
+	let resStatus = 400;
 	if (newEntry.name && newEntry.number) {
-		resStatus = 400;
 		if (!db.find((item) => item.name === newEntry.name)){
 			db = [...db, { id: getID() + "", ...newEntry }]
 			console.log(db);
