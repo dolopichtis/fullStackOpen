@@ -28,11 +28,36 @@ let phonebook = [
 const simplePhonebook = express();
 
 simplePhonebook.use(express.json());
+
 morgan.token('data', function (req, res) {
 	const data = `{"name":"${req.body.name}","number":"${req.body.number}"}`;
 	return data;
 });
-simplePhonebook.use(morgan(':method :url :status :res[content-length] - :response-time ms :data'));
+
+const morganMyFormat = (tokens, req, res) => {
+	if(req.method === 'POST') {
+		return [
+			tokens.method(req, res),
+			tokens.url(req, res),
+			tokens.status(req, res),
+			tokens.res(req, res, 'content-length'),
+			'-',
+			tokens['response-time'](req, res), 'ms',
+			tokens.data(req, res)
+		].join(' ');
+	} else {
+		return [
+			tokens.method(req, res),
+			tokens.url(req, res),
+			tokens.status(req, res),
+			tokens.res(req, res, 'content-length'),
+			'-',
+			tokens['response-time'](req, res), 'ms'
+		].join(' ');
+	}
+}
+
+simplePhonebook.use(morgan(morganMyFormat));
 
 simplePhonebook.get('/info', (req, res) => {
 	const reqTime = new Date();
