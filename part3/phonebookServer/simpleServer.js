@@ -28,7 +28,11 @@ let phonebook = [
 const simplePhonebook = express();
 
 simplePhonebook.use(express.json());
-simplePhonebook.use(morgan('tiny'));
+morgan.token('data', function (req, res) {
+	const data = `{"name":"${req.body.name}","number":"${req.body.number}"}`;
+	return data;
+});
+simplePhonebook.use(morgan(':method :url :status :res[content-length] - :response-time ms :data'));
 
 simplePhonebook.get('/info', (req, res) => {
 	const reqTime = new Date();
