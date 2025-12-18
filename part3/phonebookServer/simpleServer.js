@@ -29,11 +29,12 @@ const simplePhonebook = express();
 
 simplePhonebook.use(express.json());
 
+// custom morgan token for log req data
 morgan.token('data', function (req, res) {
-	const data = `{"name":"${req.body.name}","number":"${req.body.number}"}`;
-	return data;
+	return `{"name":"${req.body.name}","number":"${req.body.number}"}`;
 });
 
+// custom morgan log-format, that dependce on which req is: Post or else; for any req its use 'tiny' format and add req.data when it is post req;
 const morganMyFormat = (tokens, req, res) => {
 	if(req.method === 'POST') {
 		return [
