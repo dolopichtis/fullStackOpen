@@ -30,6 +30,7 @@ const simplePhonebook = express();
 
 simplePhonebook.use(express.json());
 simplePhonebook.use(cors());
+simplePhonebook.use(express.static('dist'));
 
 // custom morgan token for log req data
 morgan.token('data', function (req, res) {
