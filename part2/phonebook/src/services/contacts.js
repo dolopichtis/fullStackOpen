@@ -1,5 +1,5 @@
 import axios from 'axios'
-const url = 'http://localhost:3001/persons'
+const url = 'https://fullstackopen-t03v.onrender.com/api/persons'//http://localhost:3001/persons'
 
 const getPersons = () => {
 	return axios.get(url).then(response => response.data);
