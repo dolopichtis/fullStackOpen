@@ -90,5 +90,5 @@ simplePhonebook.delete('/api/persons/:id', (req, res) => {
 // try to decomposition of server methods
 simplePhonebook.post('/api/persons', (req, res) => server.post(req, res, phonebook));
 
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 simplePhonebook.listen(PORT, () => console.log(`Server running on the ${PORT}`));
