@@ -3,3 +3,6 @@ My hobbies is: play a guitar and an ukulele, carpentry and furniture making, rea
 I am using Linux as my only system on my laptop and I am a fan of OpenSource movement.
 
 I realy like the Vim (neoVim) and I use it for all my coding. In the future I'll like to use i3wm or ratpoison as my only DE.
+
+P.S.
+Deployed app is on https://fullstackopen-t03v.onrender.com/
