@@ -1,5 +1,4 @@
 const Message = ({message, setMessage, isError}) => {
-	console.log(message);
 	const color = isError ? 'red': 'green';
 		const warningStyle = {
 			color: color,
