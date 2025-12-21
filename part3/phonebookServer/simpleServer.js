@@ -1,7 +1,6 @@
 const express = require('express');
 const server = require('./server')
 const morgan = require('morgan');
-const cors = require('cors');
 
 let phonebook = [
 	{ 
@@ -29,7 +28,6 @@ let phonebook = [
 const simplePhonebook = express();
 
 simplePhonebook.use(express.json());
-simplePhonebook.use(cors());
 simplePhonebook.use(express.static('dist'));
 
 // custom morgan token for log req data
