@@ -1,6 +1,7 @@
 import Contact from './Contact'
 
 const Display = ({contacts, handleDeletion}) => {
+	console.log(contacts);
 	if (typeof contacts.isArray ) {
 	return (
 		<table>

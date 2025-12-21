@@ -63,10 +63,19 @@ const morganMyFormat = (tokens, req, res) => {
 
 simplePhonebook.use(morgan(morganMyFormat));
 
-simplePhonebook.get('/info', (req, res) => {
-	const reqTime = new Date();
+simplePhonebook.get('/info', (req, res) => { const reqTime = new Date();
 	res.send(`<p>Phonebook has data for ${phonebook.length} people</p>
 <p>Request time is ${reqTime}</p>`);
+});
+
+simplePhonebook.get('/', (req, res) => {
+	const reqtime = new date();
+	res.send(`<p> this is the problem in root </p>`);
+});
+
+simplePhonebook.get('/api', (req, res) => {
+	const reqtime = new date();
+	res.send(`<p> this is the problem in api </p>`);
 });
 
 simplePhonebook.get('/api/persons', (request, response) => {

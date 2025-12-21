@@ -2,6 +2,7 @@ import axios from 'axios'
 const url = 'api/persons'//http://localhost:3001/api/persons'
 
 const getPersons = () => {
+	console.log('url: ', url);
 	return axios.get(url).then(response => response.data);
 }
 
